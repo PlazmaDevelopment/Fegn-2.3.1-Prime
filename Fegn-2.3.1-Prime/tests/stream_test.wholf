@@ -1,0 +1,23 @@
+// Stream testleri
+test "Stream testi" {
+    // Stream oluşturma
+    fegn Stream {
+        // Veri akışı testi
+        pipe: (data) => {
+            assert data == "test"
+        },
+        
+        // Hata yönetimi testi
+        onError: (error) => {
+            assert error.contains("404")
+        }
+    }
+    
+    // Veri gönderme
+    Stream.push("test")
+    
+    // Stream akışı testi
+    Stream.pipe((data) => {
+        assert data == "test"
+    })
+}

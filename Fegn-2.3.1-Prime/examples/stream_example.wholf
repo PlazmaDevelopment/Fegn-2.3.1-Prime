@@ -1,0 +1,23 @@
+// Stream örneği
+
+// Stream oluşturma
+fegn Stream {
+    // Veri akışı
+    pipe: (data) => {
+        Console.log("Veri alındı: " + data)
+    },
+    
+    // Hata yönetimi
+    onError: (error) => {
+        Console.log("Hata: " + error)
+    }
+}
+
+// Veri gönderme
+Stream.push("Merhaba")
+Stream.push("Dünya")
+
+// Stream akışı
+Stream.pipe((data) => {
+    Console.log("İşlenen veri: " + data)
+})

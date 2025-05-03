@@ -1,0 +1,29 @@
+// Event Sourcing testleri
+test "Event Sourcing testi" {
+    // Event oluşturma
+    fegn EventSource {
+        // Event oluşturma testi
+        createEvent: ("test_event", {
+            "data": "test"
+        }) => {
+            assert true
+        },
+        
+        // Event dinleyici testi
+        on: ("test_event", (event) => {
+            assert event.data["data"] == "test"
+        })
+    }
+    
+    // Event kaydetme
+    var testEvent = EventSource.createEvent("test_event", {
+        "data": "test"
+    })
+    
+    EventSource.storeEvent(testEvent)
+    
+    // Event akışı testi
+    EventSource.replay((event) => {
+        assert event.type == "test_event"
+    })
+}

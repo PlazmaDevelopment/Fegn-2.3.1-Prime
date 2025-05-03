@@ -1,0 +1,30 @@
+// Event Sourcing örneği
+
+// Event oluşturma
+fegn EventSource {
+    // Event oluşturma
+    createEvent: ("user_created", {
+        "email": "ahmet@example.com",
+        "name": "Ahmet"
+    }) => {
+        Console.log("Event oluşturuldu")
+    },
+    
+    // Event dinleyici
+    on: ("user_created", (event) => {
+        Console.log("Yeni kullanıcı: " + event.data["name"])
+    })
+}
+
+// Event kaydetme
+var userEvent = EventSource.createEvent("user_created", {
+    "email": "ahmet@example.com",
+    "name": "Ahmet"
+})
+
+EventSource.storeEvent(userEvent)
+
+// Event akışı
+EventSource.replay((event) => {
+    Console.log("Event: " + event.type)
+})

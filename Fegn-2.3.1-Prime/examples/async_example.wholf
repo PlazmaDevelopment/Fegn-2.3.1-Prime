@@ -1,0 +1,29 @@
+// Asenkron programlama örneği
+
+// Asenkron fonksiyon
+async function getData() {
+    var response = await Api.get("/data")
+    return response.data
+}
+
+// Asenkron fonksiyon kullanımı
+async function main() {
+    var data = await getData()
+    Console.log("Veri: " + data)
+}
+
+// Görev ekleme
+fegn Async {
+    addTask: (getData) => {
+        Console.log("Görev eklendi")
+    },
+    
+    // Tüm görevleri bekle
+    waitForAll: () => {
+        Console.log("Tüm görevler tamamlandı")
+    }
+}
+
+// Görevi başlat
+Async.addTask(getData)
+Async.waitForAll()

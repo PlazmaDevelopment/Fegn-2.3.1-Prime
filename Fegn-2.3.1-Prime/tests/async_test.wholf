@@ -1,0 +1,29 @@
+// Asenkron programlama testleri
+test "Asenkron programlama testi" {
+    // Asenkron fonksiyon testi
+    async function testFunction() {
+        return "test"
+    }
+    
+    // Asenkron fonksiyon kullanımı
+    async function main() {
+        var result = await testFunction()
+        assert result == "test"
+    }
+    
+    // Görev ekleme
+    fegn Async {
+        addTask: (testFunction) => {
+            assert true
+        },
+        
+        // Tüm görevleri bekle
+        waitForAll: () => {
+            assert true
+        }
+    }
+    
+    // Görevi başlat
+    Async.addTask(testFunction)
+    Async.waitForAll()
+}
